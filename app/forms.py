@@ -4,17 +4,14 @@ from flask_wtf.html5 import EmailField
 from wtforms.validators import DataRequired
 
 class UserForm(Form):
-    first_name = StringField('first_name', validators=[DataRequired()])
-    last_name = StringField('last_name', validators=[DataRequired()])
-    company = StringField('company', validators=[DataRequired()])
+    nickname = StringField('nickname', validators=[DataRequired()])
     email = EmailField('email', validators=[DataRequired()])
-    phone = IntegerField('phone', validators=[DataRequired()])
-    street = StringField('street', validators=[DataRequired()])
-    city = StringField('city', validators=[DataRequired()])
-    state = StringField('state', validators=[DataRequired()])
-    country = StringField('country', validators=[DataRequired()])
-    zip_code = IntegerField('zip_code', validators=[DataRequired()])
+
 
 class TripForm(Form):
-    name_of_part = StringField('name_of_part', validators=[DataRequired()])
-    manufacturer_of_part = StringField('manufacturer_of_part', validators=[DataRequired()])
+    destination = StringField('destination', validators=[DataRequired()])
+    name_of_trip = StringField('name_of_trip', validators=[DataRequired()])
+    trip_date = StringField('trip_date', validators=[DataRequired()])
+    duration = StringField('duration', validators=[DataRequired()])
+    budget = StringField('budget', validators=[DataRequired()])
+    add_friend = StringField('add_friend', validators=[DataRequired()])

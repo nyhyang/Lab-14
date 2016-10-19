@@ -33,6 +33,24 @@ def create_user():
         return redirect('/users')
     return render_template('user.html', form=form)
 
+@myapp.route('/index')
+def index():
+    nickname = ''
+    if 'nickname' in session:
+        username = escape(session['nickname'])
+        return render_template('survey.html', name=nickname)
+    else:
+        return render_template('login.html')
+
+
+@myapp.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method=='POST':
+        session['nickname'] = request.form.get("nickname")
+        session['email'] = request.form.get("email")
+        return redirect(url_for('index'))
+
+
 @app.route('/users')
 def display_user():
     # Retreive data from database to display
@@ -43,7 +61,7 @@ def display_user():
                             customers=customers, orders=orders, addresses=addresses)
 
 @app.route('/create_trip/<customer_id>', methods=['GET', 'POST'])
-def create_order(customer_id):
+def create_trip(customer_id):
     form = TripForm()
     if form.validate_on_submit():
         # Get data from the form

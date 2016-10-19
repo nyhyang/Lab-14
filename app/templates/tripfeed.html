@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+	<div class = "row">
+		<h1> Ready for your trip?</h1>
+<!-- 		<div class="col-md-10">
+			<img  id="coverphoto"src="../static/assets/kyoto.jpg">
+		</div> -->
+
+		<div class="section">
+			<a href="{{url_for('create_trip')}}"> Create a new trip</a>
+		</div>	
+		<div class="divider"></div>
+		<div class="section"></div>
+			<h3> Here's all of your upcoming trip</h3>
+			<table>
+				<thead>
+					<tr>
+						<th data-field="destination">Destination</th>
+						<th data-field="name_of_trip">Name of Trip</th>
+						<th data-field="trip_date">Trip Date</th>
+						<th data-field="duration"> Duration</th>
+						<th data-field="budget"> Budget</th>
+						<th data-field="friend"> Friend</th>
+					</tr>
+				</thead>
+				{% for trip in trips}
+				<tr>
+					<td>{{ trip['destination'] }}</td>
+					<td>{{ trip['name_of_trip'] }}</td>
+					<td>{{ trip['trip_date'] }}</td>
+					<td>{{ trip['duration'] }}</td>
+					<td>{{ trip['budget'] }}</td>
+					<td>{{ trip['friend'] }}</td>
+              		<td><a href="{{ url_for('delete_trip', value=trip['trip_id']) }}">Delete</a></td>
+				</tr>
+
+
+				{% endfor %}
+			</table>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock%}
