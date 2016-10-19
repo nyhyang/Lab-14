@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>Welcome to ACME Aircraft Parts</h1>
+    <div class= "section">
+      <a href="{{ url_for('create_customer') }}">Add a Customer</a>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h3>These are all of our awesome customers:</h3>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th data-field="first_name">Customer First Name</th>
+            <th data-field="last_name">Customer Last Name</th>
+            <th data-field="company">Company</th>
+            <th data-field="email">Email</th>
+            <th data-field="phone">Phone</th>
+          </tr>
+        </thead>
+        {% for customer in customers %}
+          <tr>
+            <td>{{ customer['first_name'] }}</td>
+            <td>{{ customer['last_name'] }}</td>
+            <td>{{ customer['company'] }}</td>
+            <td>{{ customer['email'] }}</td>
+            <td>{{ customer['phone'] }}</td>
+            <td><a href="{{ url_for('create_order', customer_id=customer['customer_id']) }}">Add an Order</a><p></p>
+                <a href="{{ url_for('add_address', customer_id=customer['customer_id']) }}">Add another Address</a></td>
+            <td><a href="{{ url_for('display_addresses', customer_id=customer['customer_id']) }}">Display Addresses</a><p></p>
+                <a href="{{ url_for('display_orders', customer_id=customer['customer_id']) }}">Display Orders</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="section">
+      <h3>Orders from Customers:</h3>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th data-field="name_of_part">Name of Part</th>
+            <th data-field="manufacturer_of_part">Manufacturer of Part</th>
+          </tr>
+        </thead>
+        {% for order in orders %}
+          <tr>
+            <td>{{ order['name_of_part'] }}</td>
+            <td>{{ order['manufacturer_of_part'] }}</td>
+            <td><a href="{{ url_for('display_order_customers', order_id=order['order_id']) }}">Display Customers</a></td>
+            <td><a href="{{ url_for('assign_other_customer', order_id=order['order_id']) }}">Assign other Customer</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="section">
+      <h3>Adresses from Customers:</h3>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th data-field="first_name">Customer First Name</th>
+            <th data-field="last_name">Customer Last Name</th>
+            <th data-field="street">Street</th>
+            <th data-field="city">City</th>
+            <th data-field="state">State</th>
+            <th data-field="country">Country</th>
+            <th data-field="zip_code">Zip Code</th>
+          </tr>
+        </thead>
+        {% for address in addresses %}
+          <tr>
+            <td>{{ address['first_name'] }}</td>
+            <td>{{ address['last_name'] }}</td>
+            <td>{{ address['street'] }}</td>
+            <td>{{ address['city'] }}</td>
+            <td>{{ address['state'] }}</td>
+            <td>{{ address['country'] }}</td>
+            <td>{{ address['zip_code'] }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
