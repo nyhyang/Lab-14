@@ -71,3 +71,17 @@ def create_trip(customer_id):
         insert_order(name_of_part, manufacturer_of_part, customer_id)
         return redirect('/customers')
     return render_template('order.html', form=form)
+
+@app.route('/create_trip/<customer_id>', methods=['GET', 'POST'])
+def delete_trip(customer_id):
+        form = TripForm()
+    if form.validate_on_submit():
+        # Get data from the form
+        # Send data from form to Database
+        name_of_part = form.name_of_part.data
+        manufacturer_of_part = form.manufacturer_of_part.data
+        insert_order(name_of_part, manufacturer_of_part, customer_id)
+        return redirect('/customers')
+    return render_template('order.html', form=form)
+
+
