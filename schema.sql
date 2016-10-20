@@ -24,8 +24,8 @@ create table user_trip(
         foreign key (trip_id) references trip(trip_id)
 );
 
-insert into user values(1, 'sberthely', 'Selenne', 'Berthely', 'sberthely@berkeley.edu');
-insert into user values(2, 'nyhyang', 'Nancy', 'Yang', 'nyhyang@berkeley.edu');
+insert into user values(1, 'sberthely', 'sberthely@berkeley.edu');
+insert into user values(2, 'nyhyang', 'nyhyang@berkeley.edu');
 
 insert into trip values(1, 'Mallorca', '10152016', '5', '3500');
 
