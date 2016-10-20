@@ -24,3 +24,20 @@ def retrieve_trip(user_id):
         cur = con.cursor()
         result = cur.execute("select t.* from trip t, user_trip ut where t.trip_id= tu.trip_id and tu.user_id= ?", (user_id)).fetchall()
     return result
+
+def delete_trip(trip_id):
+    with sql.connect("app.db") as con:
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        cur.execute("delete from trip where trip_id=?", (trip_id))
+
+
+
+
+
+
+
+
+
+
+

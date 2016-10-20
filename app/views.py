@@ -22,14 +22,14 @@ def create_user():
         # return redirect('/users')
     return render_template('login.html', form=form)
 
-@myapp.route('/index')
-def index():
-    nickname = ''
-    if 'nickname' in session:
-        username = escape(session['nickname'])
-        return render_template('survey.html', name=nickname)
-    else:
-        return render_template('login.html')
+# @myapp.route('/index')
+# def index():
+#     nickname = ''
+#     if 'nickname' in session:
+#         username = escape(session['nickname'])
+#         return render_template('survey.html', name=nickname)
+#     else:
+#         return render_template('login.html')
 
 
 @myapp.route('/login', methods=['GET', 'POST'])
@@ -63,16 +63,9 @@ def create_trip(user_id):
         return redirect('/customers')
     return render_template('order.html', form=form)
 
-@app.route('/create_trip/<customer_id>', methods=['GET', 'POST'])
-def delete_trip(customer_id):
-        form = TripForm()
-    if form.validate_on_submit():
-        # Get data from the form
-        # Send data from form to Database
-        name_of_part = form.name_of_part.data
-        manufacturer_of_part = form.manufacturer_of_part.data
-        insert_order(name_of_part, manufacturer_of_part, customer_id)
-        return redirect('/customers')
-    return render_template('order.html', form=form)
+@app.route('/delete_trip/<trip_id>', methods=['GET', 'POST'])
+def delete_trip(trip_id):
+    delete_trip(trip_id)
+    return render_template('tripfeed.html', form=form)
 
 
