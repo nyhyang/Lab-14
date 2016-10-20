@@ -9,11 +9,19 @@
 <div class="main-container"> 
 	<h3> Let's get you log in to get started! </h3>
 	<form action="login" method="post">
-		<label for="nickname">Nickname</label><input type="text" name="nickname">
-		<label for="email">email</label><input type="text" name="email">
+ <!--        <p>
+          Nickname:<br>
+          {{ form.nickname(size=120) }}<br>
+        </p>
+        <p>
+          Email:<br>
+          {{ form.email(size=120) }}<br>
+        </p> -->
+		<label for="nickname">Nickname: form.nickname(size=120)</label><input type="text" name="nickname">
+		<label for="email">email: form.email(size=120)</label><input type="text" name="email">
 
 		<input class="action-icon" id="login" type="submit" Value="Submit">
-		
+
 	</form>
 
 </div>

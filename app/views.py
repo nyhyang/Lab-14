@@ -15,23 +15,12 @@ def create_user():
     if form.validate_on_submit():
         # Get data from the form
         # Send data from form to Database
-        first_name = form.first_name.data
-        last_name = form.last_name.data
-        company = form.company.data
+        nickname = form.nickname.data
         email = form.email.data
-        phone = form.phone.data
-        customer_id = insert_customer(first_name, last_name, company, email, phone)
+        insert_user(nickname, email)
 
-        # Customer Address Data
-        street = form.street.data
-        city = form.city.data
-        state = form.state.data
-        country = form.country.data
-        zip_code = form.zip_code.data
-        insert_address(street, city, state, country, zip_code, customer_id)
-
-        return redirect('/users')
-    return render_template('user.html', form=form)
+        # return redirect('/users')
+    return render_template('login.html', form=form)
 
 @myapp.route('/index')
 def index():

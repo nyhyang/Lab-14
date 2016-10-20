@@ -3,8 +3,6 @@ drop table if exists user;
 create table user(
     user_id integer primary key,
     nickname text not null,
-    first_name text not null,
-    last_name text not null,
     email text not null
 );
 
