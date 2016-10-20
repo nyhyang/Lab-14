@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class= "section">
+      <a href="{{ url_for('display_trip') }}">TripFeed</a>
+    </div>
+    <h2>Add Trip to your Trip Feed</h2>
+    <form action="" method="post" name="login">
+      {{ form.hidden_tag() }}
+      <div class="divider"></div>
+      <div class="section">
+        <p>
+          Destionation:<br>
+          {{ form.destination(size=120) }}<br>
+        </p>
+        <p>
+          Name of the Trip:<br>
+          {{ form.name_of_trip(size=120) }}<br>
+        </p>
+        <p>
+          Trip Date:<br>
+            {{ form.trip_date(size=120)}}</br>
+        </p>
+        <p>
+          Duration:<br>
+          {{ form.duration(size=120)}}</br>
+        </p>
+        <p>
+          Budget:<br>
+          {{ form.budget(size=120)}}</br>
+        </p>
+        <p>
+          Friend 
+          <select>
+            <option value="anna">Anna</option>
+            <option value="malavika">Malavika</option>
+            <option value="yifei">Yifei</option>
+            <option value="robin">Robin</option>
+            <option value="gabe">Gabe</option>
+          </select>
+        </p>
+      </div>
+      <p><input type="submit" value="Create Trip"></p>
+    </form>
+  </div>
+</div>
+{% endblock %}
