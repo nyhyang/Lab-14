@@ -15,23 +15,12 @@ def create_user():
     if form.validate_on_submit():
         # Get data from the form
         # Send data from form to Database
-        first_name = form.first_name.data
-        last_name = form.last_name.data
-        company = form.company.data
+        nickname = form.nickname.data
         email = form.email.data
-        phone = form.phone.data
-        customer_id = insert_customer(first_name, last_name, company, email, phone)
+        insert_user(nickname, email)
 
-        # Customer Address Data
-        street = form.street.data
-        city = form.city.data
-        state = form.state.data
-        country = form.country.data
-        zip_code = form.zip_code.data
-        insert_address(street, city, state, country, zip_code, customer_id)
-
-        return redirect('/users')
-    return render_template('user.html', form=form)
+        # return redirect('/users')
+    return render_template('login.html', form=form)
 
 @myapp.route('/index')
 def index():
@@ -52,23 +41,25 @@ def login():
 
 
 @app.route('/users')
-def display_user():
+def display_trip():
     # Retreive data from database to display
-    customers = retrieve_customers(None)
-    orders = retrieve_orders(None)
-    addresses = retrieve_addresses(None)
-    return render_template('home.html',
-                            customers=customers, orders=orders, addresses=addresses)
+    trips = retrieve_trip(None)    
+    return render_template('tripfeed.html',
+                            trips=trips)
 
-@app.route('/create_trip/<customer_id>', methods=['GET', 'POST'])
-def create_trip(customer_id):
+@app.route('/create_trip/<user_id>', methods=['GET', 'POST'])
+def create_trip(user_id):
     form = TripForm()
     if form.validate_on_submit():
         # Get data from the form
         # Send data from form to Database
-        name_of_part = form.name_of_part.data
-        manufacturer_of_part = form.manufacturer_of_part.data
-        insert_order(name_of_part, manufacturer_of_part, customer_id)
+        destination = form.destination.data
+        name_of_trip = form.name_of_trip.data
+        trip_date = form.trip_date.data
+        duration = form.duration.data
+        budget = form.budget.data
+        friend = form.friend.data
+        create_trip(destination, name_of_trip, trip_date, duration, budget, friend, user_id)
         return redirect('/customers')
     return render_template('order.html', form=form)
 
