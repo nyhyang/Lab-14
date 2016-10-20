@@ -4,7 +4,6 @@ from .forms import UserForm, TripForm
 from .models import *
 # Access the models file to use SQL functions
 
-
 @app.route('/')
 def index():
     return redirect('/create_user')
@@ -17,7 +16,7 @@ def create_user():
         # Send data from form to Database
         nickname = form.nickname.data
         email = form.email.data
-        insert_user(nickname, email)
+    
 
         # return redirect('/users')
     return render_template('login.html', form=form)
